@@ -20,4 +20,4 @@ To run tests, run the following command
 C:\Users\fumar\OneDrive\Desktop\SE_Test\SE_env\Scripts\activate.bat
   SE_env C:\Users\fumar\OneDrive\Desktop\SE_Test\tests\pytest test_login.py
 ```
-
+NOTE: READ THE COMMANDS CAREFULLY THERE MIGHT BE A PATH DIFFERENCE 
