@@ -1,9 +1,0 @@
-setup.py
-pages/__init__.py
-pages/login_page.py
-pysocks.egg-info/PKG-INFO
-pysocks.egg-info/SOURCES.txt
-pysocks.egg-info/dependency_links.txt
-pysocks.egg-info/top_level.txt
-tests/__init__.py
-tests/test_login.py
