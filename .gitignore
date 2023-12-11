@@ -2,3 +2,5 @@ __pycache__
 .pytest_cache
 .pytest_cache
 .gitattributes
+pages/__pycache__
+tests/__pycache__
