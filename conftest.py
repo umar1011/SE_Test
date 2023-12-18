@@ -1,10 +1,10 @@
 import pytest
 from selenium import webdriver
 
-@pytest.fixture
-def browser():
+@pytest.fixture(scope="function")
+def driver():
     driver = webdriver.Chrome()
-    driver.maximize_window()
     driver.get("https://www.saucedemo.com/")
+    driver.maximize_window()
     yield driver
-    driver.quit()
+    driver.close()

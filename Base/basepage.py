@@ -7,22 +7,34 @@ from commons import constants
 
 
 class BasePage:
+    """
+     Base page for all available screens
+    """
 
     def __init__(self, driver):
         self.driver = driver
         self.elements = Elements()
 
     def wait_and_get_element(self, element_locator, by=By.CSS_SELECTOR, time_out=10):
-        """Waits for an element to be present and returns it."""
+
+        """
+        wait and get element from the screen, block until given time out
+        :param element_locator: (str) element locator
+        :param by: Element Selector types
+        :param time_out: (int) defaults to 5 sec
+        
+        :return: (WebElement) target_element
+        """
+
         element = WebDriverWait(self.driver, time_out).until(
-            expected_conditions.presence_of_element_located((by, element_locator))
-        )
+                expected_conditions.presence_of_element_located((by, element_locator)))
+
         if not element:
             raise Exception(constants.ELEMENT_NOT_FOUND.format(element_locator, None))
         return element
 
-    def compare_and_assert(self, element_id, expected):
-        """Compares the actual text of an element with the expected text and raises an assertion error if they don't match."""
-        actual = self.wait_and_get_element(element_id).text
-        assert expected == actual or actual in expected, constants.VALUES_NOT_MATCHED.format(actual, expected)
-
+    def compare_actual_and_expected_result(self, element_id, actual):
+        expected = self.wait_and_get_element(element_id).text
+        if expected == actual or actual in expected:
+            return True
+        raise Exception(constants.VALUES_NOT_MATCHED.format(actual, expected))

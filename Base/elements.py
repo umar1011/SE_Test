@@ -1,3 +1,8 @@
+"""
+   Module covers Applications all Screens elements
+"""
+
+
 class Elements:
     # LOGIN SCREEN
     USER_NAME_CSS = "#user-name"
