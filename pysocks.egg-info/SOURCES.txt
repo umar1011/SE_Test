@@ -1,5 +1,9 @@
 README.md
 setup.py
+BasePage/__init__.py
+BasePage/elements.py
+commons/__init__.py
+commons/constants.py
 pages/__init__.py
 pages/login_page.py
 pysocks.egg-info/PKG-INFO
