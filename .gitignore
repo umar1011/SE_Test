@@ -4,3 +4,4 @@ __pycache__
 .gitattributes
 pages/__pycache__
 tests/__pycache__
+pysocks.egg-info
