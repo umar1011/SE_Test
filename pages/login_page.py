@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from BasePage.elements import Elements as El
 
 class LoginPage:
 
@@ -6,9 +7,9 @@ class LoginPage:
         self.driver = driver
 
         # Page elements using locators
-        self.username_field = (By.ID, "user-name")
-        self.password_field = (By.ID, "password")
-        self.login_button = (By.ID, "login-button")
+        self.username_field = (By.CSS_SELECTOR, El.USER_NAME_CSS)
+        self.password_field = (By.CSS_SELECTOR, El.PASSWORD_CSS)
+        self.login_button = (By.CSS_SELECTOR, El.LOGIN_BUTTON_CSS)
 
     def enter_username(self, username):
         self.driver.find_element(*self.username_field).send_keys(username)
