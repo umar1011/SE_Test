@@ -1,23 +1,33 @@
+"""Check All Login Test Scenarios"""
+from pages.login_page import Login
 import pytest
-from selenium.webdriver.common.by import By
-from pages.login_page import LoginPage
-
-@pytest.mark.parametrize("username, password", [("standard_user", "secret_sauce")])
-def test_login_with_valid_credentials(browser, username, password):
-    login_page = LoginPage(browser)
-    login_page.enter_username(username)
-    login_page.enter_password(password)
-    login_page.click_login_button()
-    # Assert successful login (e.g., check URL, element presence)
-    assert browser.current_url == "https://www.saucedemo.com/inventory.html"
+import logging
+from commons import constants
 
 
-@pytest.mark.parametrize("username, password", [("userwrong", "secret_sauce"), ("valid_username", "invalid_password")])
-def test_login_with_invalid_credentials(browser, username, password):
-    login_page = LoginPage(browser)
-    login_page.enter_username(username)
-    login_page.enter_password(password)
-    login_page.click_login_button()
+class TestLogin:
 
-    # Assert error message displayed
-    assert "Epic sadface: Username and password do not match any user in this service"
+    def test_login_with_valid_credentials(self, driver):
+        main_page = Login(driver)
+        main_page.login()
+        assert main_page.verify_dashboard_is_loaded()
+        logging.info("User is successfully Logged in")
+
+    def test_login_with_invalid_password(self, driver):
+        main_page = Login(driver)
+        main_page.login(password="test")
+        assert main_page.validate_error_message(value_to_match=constants.error_message)
+        logging.info(f"error message appears and value error value must match with: {constants.error_message}")
+
+    def test_login_with_invalid_username(self, driver):
+        main_page = Login(driver)
+        main_page.login(user_name="test")
+        assert main_page.validate_error_message(value_to_match=constants.error_message)
+        logging.info(f"error message appears and value error value must match with: {constants.error_message}")
+
+    def test_login_without_credentials(self, driver):
+        main_page = Login(driver)
+        main_page.login(user_name="", password="")
+        assert main_page.validate_error_message(value_to_match=constants.user_name_required_error_message)
+        logging.info(f"error message appears and value error value must match with:"
+                     f" {constants.user_name_required_error_message}")

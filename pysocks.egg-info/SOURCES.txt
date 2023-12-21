@@ -1,6 +1,7 @@
 README.md
 setup.py
 BasePage/__init__.py
+BasePage/base_page.py
 BasePage/elements.py
 commons/__init__.py
 commons/constants.py
